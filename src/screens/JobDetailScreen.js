@@ -2,8 +2,12 @@ import { Alert, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { styles } from '../styles/styles';
 
 export default function JobDetailScreen({ route }) {
+  // Vi pakker "job" ud af route.params med destructuring.
+  // Det er det samme job-objekt, som JobsScreen sendte med i navigation.navigate.
   const { job } = route.params;
 
+  // Kaldes når brugeren trykker "Ansøg nu". Alert.alert viser en simpel
+  // pop-up-boks - her simulerer vi bare at ansøgningen bliver sendt.
   function handleApply() {
     Alert.alert('Ansøgning sendt', `Din ansøgning til ${job.company} er sendt.`);
   }
