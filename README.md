@@ -46,8 +46,3 @@ src/
     colors.js
     styles.js
 ```
-
-## Brugerinddragelse
-
-TODO: beskriv metode (interview/survey), resultater og refleksioner her eller
-i den skriftlige rapport, jf. opgavebeskrivelsen.
