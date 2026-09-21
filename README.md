@@ -47,27 +47,6 @@ src/
     styles.js
 ```
 
-## Kom i gang (VS Code)
-
-Forudsætninger: [Node.js](https://nodejs.org/) og appen
-[Expo Go](https://expo.dev/go) på din telefon (til test på fysisk enhed).
-
-1. Åbn mappen i VS Code og åbn en terminal (`Ctrl/Cmd + Ö`).
-2. Installer dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Start udviklings-serveren:
-
-   ```bash
-   npm start
-   ```
-
-4. Scan QR-koden med Expo Go-appen på din telefon, eller tryk `w` for at åbne
-   i browseren, `a` for Android-emulator eller `i` for iOS-simulator.
-
 ## Brugerinddragelse
 
 TODO: beskriv metode (interview/survey), resultater og refleksioner her eller
