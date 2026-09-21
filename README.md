@@ -4,7 +4,6 @@ Jobify er en mobil applikation bygget i React Native (Expo), hvor studerende kan
 oprette en profil med deres studieretning, og virksomheder kan sende jobopslag
 direkte til studerende inden for bestemte studieretninger.
 
-Lavet som del af den obligatoriske opgave 1 (individuel): *Brugerinddragelse*.
 
 ## Demovideo
 
