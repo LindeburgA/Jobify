@@ -8,7 +8,7 @@ Lavet som del af den obligatoriske opgave 1 (individuel): *Brugerinddragelse*.
 
 ## Demovideo
 
-TODO: indsæt link til demovideo (YouTube/GitHub) her.
+[Se demovideoen på YouTube](https://youtube.com/shorts/GgvtLMymZlA?feature=share)
 
 ## Funktionalitet
 
