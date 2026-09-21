@@ -6,8 +6,8 @@ export default function JobDetailScreen({ route }) {
   // Det er det samme job-objekt, som JobsScreen sendte med i navigation.navigate.
   const { job } = route.params;
 
-  // Kaldes når brugeren trykker "Ansøg nu". Alert.alert viser en simpel
-  // pop-up-boks - her simulerer vi bare at ansøgningen bliver sendt.
+  // Kaldes når brugeren trykker "Ansøg nu"
+  // pop-up-boks - ansøgningen bliver sendt.
   function handleApply() {
     Alert.alert('Ansøgning sendt', `Din ansøgning til ${job.company} er sendt.`);
   }
