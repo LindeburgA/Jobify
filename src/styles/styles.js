@@ -1,16 +1,21 @@
 import { StyleSheet } from 'react-native';
 import { colors } from './colors';
 
-// Al styling til appen samlet i denne fil, adskilt fra skærm-komponenterne.
+// Al styling til appen er samlet i denne fil i stedet for at ligge spredt
+// ude i hver skærm-komponent. StyleSheet.create() ligner almindelige CSS-lignende
+// objekter, men er React Natives egen måde at style views, tekst m.m. på
+// (der findes intet CSS i React Native - kun JavaScript-objekter som dette).
 export const styles = StyleSheet.create({
+  // --- Generelle skærm-containere ---
   screen: {
-    flex: 1,
+    flex: 1, // flex: 1 betyder "fyld al tilgængelig plads"
     backgroundColor: colors.background,
   },
   screenContent: {
     flexGrow: 1,
     padding: 24,
   },
+  // Bruges på skærme, hvor indholdet skal centreres lodret og vandret (fx WelcomeScreen)
   centerScreen: {
     flex: 1,
     backgroundColor: colors.background,
@@ -18,6 +23,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 24,
   },
+
+  // --- Tekst-stile ---
   logo: {
     fontSize: 40,
     fontWeight: '800',
@@ -41,6 +48,9 @@ export const styles = StyleSheet.create({
     color: colors.textMuted,
     marginBottom: 24,
   },
+
+  // --- Knapper ---
+  // Primær knap: fyldt med hovedfarven (fx "Opret bruger", "Ansøg nu")
   button: {
     backgroundColor: colors.primary,
     borderRadius: 10,
@@ -49,6 +59,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     marginTop: 12,
   },
+  // Sekundær knap: hvid med kant - bruges til den "mindre vigtige" handling
   buttonSecondary: {
     backgroundColor: colors.card,
     borderRadius: 10,
@@ -69,6 +80,8 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
+
+  // --- Formular (RegisterScreen) ---
   input: {
     backgroundColor: colors.card,
     borderWidth: 1,
@@ -87,6 +100,7 @@ export const styles = StyleSheet.create({
     marginBottom: 8,
     marginTop: 4,
   },
+  // "Chip"-knapperne man vælger studieretning med
   fieldChip: {
     borderWidth: 1,
     borderColor: colors.border,
@@ -97,6 +111,7 @@ export const styles = StyleSheet.create({
     marginRight: 8,
     marginBottom: 8,
   },
+  // Lægges oveni fieldChip, når den valgte chip skal fremhæves
   fieldChipSelected: {
     backgroundColor: colors.primary,
     borderColor: colors.primary,
@@ -110,10 +125,12 @@ export const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   fieldChipRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: 'row', // placerer chips ved siden af hinanden
+    flexWrap: 'wrap', // ...og lader dem "wrappe" til ny linje, når pladsen slipper op
     marginBottom: 20,
   },
+
+  // --- Jobkort i listen (JobsScreen) ---
   jobCard: {
     backgroundColor: colors.card,
     borderRadius: 12,
@@ -135,9 +152,10 @@ export const styles = StyleSheet.create({
   },
   jobMetaRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between', // skubber studieretning-tag og lokation ud til hver sin side
     alignItems: 'center',
   },
+  // De små runde mærkater med studieretning (fx "Datamatiker")
   tag: {
     backgroundColor: colors.tag,
     borderRadius: 20,
@@ -153,11 +171,14 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.textMuted,
   },
+  // Vises når FlatList's data-liste er tom (ingen matchende jobopslag)
   emptyText: {
     textAlign: 'center',
     color: colors.textMuted,
     marginTop: 40,
   },
+
+  // --- Jobdetaljer (JobDetailScreen) ---
   detailSection: {
     marginTop: 20,
   },
