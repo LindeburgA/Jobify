@@ -14,18 +14,6 @@ Alle jobopslag er **fiktive demoopslag**. Appen sender ikke ansøgninger og opre
 Profilen og listen med gemte job gemmes lokalt på brugerens enhed med AsyncStorage.
 Jobopslagene ligger fortsat som mock-data i `src/data/jobs.js`.
 
-## Sådan starter du appen
-
-Brug Node.js 22.13.0 eller nyere i 22-serien, eller Node.js 24.3.0 eller nyere.
-Appen bruger Expo SDK 58 og er afprøvet med Expo Go til SDK 58 på iPhone.
-Kør fra Jobify-mappen:
-
-```bash
-npm install
-npx expo start
-```
-
-Scan QR-koden med Expo Go på iPhone. Computer og telefon skal være på samme netværk.
 
 ## Hurtig gennemgang
 
