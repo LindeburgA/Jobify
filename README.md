@@ -47,4 +47,5 @@ Scan QR-koden med Expo Go på iPhone. Computer og telefon skal være på samme n
 ## Demovideo
 
 [Video af første iteration](https://youtube.com/shorts/GgvtLMymZlA?feature=share).
-Optag en ny video af denne iteration og tilføj linket her før aflevering.
+[Video af ANDEN iteration](https://youtube.com/shorts/Nk0r5TnBDhE?feature=share)
+
