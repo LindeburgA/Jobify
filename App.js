@@ -1,63 +1,74 @@
+import { ActivityIndicator, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-// Hver skærm i appen er sin egen komponent-fil under src/screens
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
 import JobsScreen from './src/screens/JobsScreen';
+import SavedJobsScreen from './src/screens/SavedJobsScreen';
 import JobDetailScreen from './src/screens/JobDetailScreen';
+import { JobifyProvider, useJobify } from './src/state/JobifyContext';
 import { colors } from './src/styles/colors';
+import { styles } from './src/styles/styles';
 
-// Stack-navigatoren styrer hvilken skærm der vises, og lægger dem
-// "oven på hinanden" som en stak - man navigerer frem/tilbage mellem dem.
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
-export default function App() {
+function MainTabs() {
   return (
-    // NavigationContainer skal pakke hele navigationen ind - uden den
-    // kan React Navigation ikke holde styr på hvilken skærm der er aktiv.
+    <Tab.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: colors.card },
+        headerTintColor: colors.text,
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.textMuted,
+        tabBarStyle: { backgroundColor: colors.card },
+      }}
+    >
+      <Tab.Screen name="Jobs" component={JobsScreen} options={{ title: 'Jobopslag' }} />
+      <Tab.Screen name="Saved" component={SavedJobsScreen} options={{ title: 'Gemte job' }} />
+      <Tab.Screen name="Profile" component={RegisterScreen} options={{ title: 'Profil' }} />
+    </Tab.Navigator>
+  );
+}
+
+function Navigation() {
+  const { ready, profile } = useJobify();
+
+  // Vent på lokal lagring, før vi vælger startskærm. Ellers kan en gemt profil
+  // kortvarigt se ud som en ny bruger ved opstart.
+  if (!ready) {
+    return (
+      <View style={styles.loadingScreen}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </View>
+    );
+  }
+
+  return (
     <NavigationContainer>
       <StatusBar style="dark" />
-
       <Stack.Navigator
-        // Bestemmer hvilken skærm brugeren ser først, når appen starter.
-        initialRouteName="Welcome"
-        // screenOptions gælder som standard for ALLE skærme i navigatoren
-        // (fx farven på topbjælken/headeren), medmindre en skærm overskriver det.
+        initialRouteName={profile ? 'MainTabs' : 'Welcome'}
         screenOptions={{
           headerStyle: { backgroundColor: colors.card },
           headerTintColor: colors.text,
-          headerTitleStyle: { fontWeight: '700' },
         }}
       >
-        {/*
-          Hvert Stack.Screen "registrerer" en skærm med et navn (name).
-          Det navn er det, man bruger når man skriver
-          navigation.navigate('Navn') for at hoppe til skærmen.
-        */}
-        <Stack.Screen
-          name="Welcome"
-          component={WelcomeScreen}
-          // Skjuler topbjælken på velkomstskærmen, så den fylder hele skærmen.
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Register"
-          component={RegisterScreen}
-          options={{ title: 'Opret profil' }}
-        />
-        <Stack.Screen
-          name="Jobs"
-          component={JobsScreen}
-          options={{ title: 'Jobopslag' }}
-        />
-        <Stack.Screen
-          name="JobDetail"
-          component={JobDetailScreen}
-          options={{ title: 'Jobopslag' }}
-        />
+        <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
+        <Stack.Screen name="JobDetail" component={JobDetailScreen} options={{ title: 'Jobdetaljer' }} />
       </Stack.Navigator>
     </NavigationContainer>
+  );
+}
+
+export default function App() {
+  return (
+    <JobifyProvider>
+      <Navigation />
+    </JobifyProvider>
   );
 }

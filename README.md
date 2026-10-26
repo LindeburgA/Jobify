@@ -1,74 +1,50 @@
 # Jobify
 
-Jobify er en mobil applikation bygget i React Native (Expo), hvor studerende kan
-oprette en profil med deres studieretning, og virksomheder kan sende jobopslag
-direkte til studerende inden for bestemte studieretninger.
+Jobify er en React Native-prototype til studerende, som vil finde relevante studiejob.
+Alle jobopslag er **fiktive demoopslag**. Appen sender ikke ansøgninger og opretter ikke en konto hos virksomheder.
 
-Lavet som del af den obligatoriske opgave 1 (individuel): *Brugerinddragelse*.
+## Funktioner
+
+- Profil med studieretning og valgfri interesseområder
+- Jobliste med filtrering efter profil og søgning i opslag
+- Gemte job, som huskes efter appen lukkes
+- Navigation i bunden mellem Jobopslag, Gemte job og Profil
+- Jobdetaljer med tydelig markering af demoopslag
+
+Profilen og listen med gemte job gemmes lokalt på brugerens enhed med AsyncStorage.
+Jobopslagene ligger fortsat som mock-data i `src/data/jobs.js`.
+
+## Sådan starter du appen
+
+Brug Node.js 22.13.0 eller nyere i 22-serien, eller Node.js 24.3.0 eller nyere.
+Appen bruger Expo SDK 58 og er afprøvet med Expo Go til SDK 58 på iPhone.
+Kør fra Jobify-mappen:
+
+```bash
+npm install
+npx expo start
+```
+
+Scan QR-koden med Expo Go på iPhone. Computer og telefon skal være på samme netværk.
+
+## Hurtig gennemgang
+
+1. Opret en profil med en studieretning og eventuelt interesser.
+2. Se filtrerede opslag, søg i listen, og skift til alle opslag.
+3. Gem et job, og find det under Gemte job.
+4. Luk appen helt, åbn den igen, og kontrollér at profil og gemte job stadig findes.
+5. Fjern jobbet fra Gemte job, og kontrollér at det også er fjernet fra detaljeskærmen.
+
+## Struktur
+
+- `App.js`: stack- og bundnavigation
+- `src/screens/`: de fem skærme
+- `src/components/JobCard.js`: genbrugt jobkort
+- `src/state/JobifyContext.js`: profil, gemte job og lokal lagring
+- `src/data/`: fiktive job og studieretninger
+- `src/styles/`: farver og styling
 
 ## Demovideo
 
-TODO: indsæt link til demovideo (YouTube/GitHub) her.
-
-## Funktionalitet
-
-- **Velkomstskærm** – kort præsentation af appen med to knapper: "Opret profil"
-  og "Se alle jobopslag".
-- **Opret profil** – studerende indtaster navn, email og vælger deres
-  studieretning (fx Datamatiker, Multimediedesigner, Markedsføringsøkonom).
-- **Jobopslag** – en liste (FlatList) af jobopslag, filtreret efter den valgte
-  studieretning.
-- **Jobdetaljer** – fuld beskrivelse af et jobopslag med ansøgningsfrist og en
-  "Ansøg nu"-knap.
-
-## Teknisk
-
-- **React Native** via **Expo** (`~57`)
-- **React Navigation** (native stack) til navigation mellem skærme
-- Al styling er samlet i `src/styles/styles.js` og `src/styles/colors.js`,
-  adskilt fra skærm-komponenterne
-- Mock-data for jobopslag og studieretninger ligger i `src/data/`
-
-### Struktur
-
-```
-App.js                    # Navigation-opsætning (Stack Navigator)
-src/
-  screens/
-    WelcomeScreen.js       # Skærm 1
-    RegisterScreen.js      # Skærm 2
-    JobsScreen.js           # Skærm 3 (liste over jobopslag)
-    JobDetailScreen.js      # Skærm 4
-  data/
-    studyFields.js
-    jobs.js
-  styles/
-    colors.js
-    styles.js
-```
-
-## Kom i gang (VS Code)
-
-Forudsætninger: [Node.js](https://nodejs.org/) og appen
-[Expo Go](https://expo.dev/go) på din telefon (til test på fysisk enhed).
-
-1. Åbn mappen i VS Code og åbn en terminal (`Ctrl/Cmd + Ö`).
-2. Installer dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Start udviklings-serveren:
-
-   ```bash
-   npm start
-   ```
-
-4. Scan QR-koden med Expo Go-appen på din telefon, eller tryk `w` for at åbne
-   i browseren, `a` for Android-emulator eller `i` for iOS-simulator.
-
-## Brugerinddragelse
-
-TODO: beskriv metode (interview/survey), resultater og refleksioner her eller
-i den skriftlige rapport, jf. opgavebeskrivelsen.
+[Video af første iteration](https://youtube.com/shorts/GgvtLMymZlA?feature=share).
+Optag en ny video af denne iteration og tilføj linket her før aflevering.
