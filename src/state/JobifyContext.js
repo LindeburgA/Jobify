@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useRef, useState } from 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { JOBS } from '../data/jobs';
 
+// AsyncStorage gemmer data lokalt på telefonen, også når appen lukkes.
 const STORAGE_KEY = '@jobify/user-data-v2';
 const JobifyContext = createContext(null);
 const validJobIds = new Set(JOBS.map((job) => job.id));
@@ -14,6 +15,7 @@ export function JobifyProvider({ children }) {
   const [storageError, setStorageError] = useState(false);
   const writeQueue = useRef(Promise.resolve());
 
+  // Ved opstart hentes den tidligere profil og de gemte job fra telefonen.
   useEffect(() => {
     let active = true;
 
@@ -26,6 +28,7 @@ export function JobifyProvider({ children }) {
             setProfile(data.profile);
           }
           if (Array.isArray(data.savedIds)) {
+            // Fjern id'er, som ikke længere findes i listen over demoopslag.
             setSavedIds(data.savedIds.filter((id) => validJobIds.has(id)));
           }
         }
@@ -53,6 +56,7 @@ export function JobifyProvider({ children }) {
       .catch(() => setStorageError(true));
   }, [profile, savedIds, ready, canPersist]);
 
+  // Samme funktion bruges til både at gemme og fjerne et job.
   function toggleSaved(id) {
     if (!validJobIds.has(id)) return;
     setSavedIds((current) => current.includes(id)
@@ -72,6 +76,7 @@ export function JobifyProvider({ children }) {
   return <JobifyContext.Provider value={value}>{children}</JobifyContext.Provider>;
 }
 
+// Skærmene får adgang til fælles data gennem dette hook.
 export function useJobify() {
   const value = useContext(JobifyContext);
   if (!value) throw new Error('useJobify skal bruges inde i JobifyProvider');

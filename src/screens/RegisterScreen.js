@@ -6,6 +6,7 @@ import { styles } from '../styles/styles';
 
 export default function RegisterScreen({ navigation }) {
   const { profile, saveProfile, storageError } = useJobify();
+  // Felterne starter med gemte værdier, når brugeren redigerer sin profil.
   const [name, setName] = useState(profile?.name ?? '');
   const [email, setEmail] = useState(profile?.email ?? '');
   const [selectedField, setSelectedField] = useState(profile?.studyField ?? null);
@@ -22,6 +23,7 @@ export default function RegisterScreen({ navigation }) {
       : [...current, interest]);
   }
 
+  // Kontroller de nødvendige felter, før profilen gemmes lokalt.
   function handleSave() {
     if (!name.trim() || !email.trim() || !selectedField) {
       Alert.alert('Udfyld felterne', 'Navn, e-mail og studieretning skal udfyldes.');
@@ -76,6 +78,7 @@ export default function RegisterScreen({ navigation }) {
         ))}
       </View>
 
+      {/* Vis kun interesser, der hører til den valgte studieretning. */}
       {selectedField && (
         <>
           <Text style={styles.label}>Interesser (valgfrit)</Text>

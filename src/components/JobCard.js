@@ -2,6 +2,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { useJobify } from '../state/JobifyContext';
 import { styles } from '../styles/styles';
 
+// Det samme jobkort bruges i både joblisten og listen over gemte job.
 export default function JobCard({ job, onOpen }) {
   const { savedIds, toggleSaved } = useJobify();
   const isSaved = savedIds.includes(job.id);

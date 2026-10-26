@@ -13,9 +13,11 @@ import { JobifyProvider, useJobify } from './src/state/JobifyContext';
 import { colors } from './src/styles/colors';
 import { styles } from './src/styles/styles';
 
+// Stacken bruges til velkomst og jobdetaljer; fanerne ligger samlet i MainTabs.
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+// Fanerne i bunden gør det muligt at skifte mellem job, gemte job og profil.
 function MainTabs() {
   return (
     <Tab.Navigator
@@ -65,6 +67,7 @@ function Navigation() {
   );
 }
 
+// Provider gør profil og gemte job tilgængelige på alle skærme.
 export default function App() {
   return (
     <JobifyProvider>

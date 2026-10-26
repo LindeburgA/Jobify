@@ -14,14 +14,17 @@ export default function JobsScreen({ navigation }) {
   // En opdateret profil skal igen vise job, der matcher profilen.
   useEffect(() => setShowAll(false), [profile]);
 
+  // Listen beregnes igen, når profil, søgning eller filterknap ændres.
   const jobs = useMemo(() => filterJobs(JOBS, profile, query, showAll), [profile, query, showAll]);
 
+  // Jobdetaljer ligger i den overordnede stack; kun jobbets id sendes med.
   function openJob(job) {
     navigation.getParent()?.navigate('JobDetail', { jobId: job.id });
   }
 
   return (
     <View style={styles.screen}>
+      {/* FlatList viser kun de kort, der er relevante på skærmen. */}
       <FlatList
         data={jobs}
         keyExtractor={(item) => item.id}

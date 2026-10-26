@@ -4,6 +4,7 @@ import { useJobify } from '../state/JobifyContext';
 import { styles } from '../styles/styles';
 
 export default function JobDetailScreen({ route }) {
+  // Slå opslaget op via det id, som joblisten eller Gemte job sender med.
   const job = JOBS.find((item) => item.id === route.params?.jobId);
   const { savedIds, toggleSaved, storageError } = useJobify();
 
@@ -11,6 +12,7 @@ export default function JobDetailScreen({ route }) {
     return <View style={styles.centerScreen}><Text style={styles.emptyText}>Jobopslaget blev ikke fundet.</Text></View>;
   }
 
+  // Knappens tekst følger den fælles liste over gemte job.
   const isSaved = savedIds.includes(job.id);
 
   return (

@@ -6,6 +6,7 @@ import { styles } from '../styles/styles';
 
 export default function SavedJobsScreen({ navigation }) {
   const { savedIds, storageError } = useJobify();
+  // Gemte id'er oversættes til de jobobjekter, som kortene skal vise.
   const jobs = JOBS.filter((job) => savedIds.includes(job.id));
 
   return (

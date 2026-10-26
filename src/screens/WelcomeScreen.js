@@ -1,6 +1,7 @@
 import { Text, TouchableOpacity, View } from 'react-native';
 import { styles } from '../styles/styles';
 
+// Velkomsten kan åbne profil eller jobliste via en fane inde i MainTabs.
 export default function WelcomeScreen({ navigation }) {
   return (
     <View style={styles.centerScreen}>
